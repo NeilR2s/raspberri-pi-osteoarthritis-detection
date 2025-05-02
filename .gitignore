@@ -1,3 +1,6 @@
-archive/
-archive.zip
-auto_test/
+# ----- dirs -----
+dataset-cleaned/
+
+# ----- files -----
+dataset-base.zip
+backup-best.zip
