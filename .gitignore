@@ -1,5 +1,6 @@
 # ----- dirs -----
 dataset-cleaned/
+__pycache__
 
 # ----- files -----
 dataset-base.zip

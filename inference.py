@@ -8,8 +8,10 @@ import cv2
 
 
 DEFAULT_FUNCTION_KEY = 'serving_default'
-MODEL_PATH = 'cnn-arthritis/my_model' 
+MODEL_PATH = 'my_model' 
 
+
+    
 try:
     model = tf.saved_model.load(MODEL_PATH)
     inference_func = model.signatures[DEFAULT_FUNCTION_KEY]
@@ -19,8 +21,6 @@ except Exception as e:
     inference_func = None
 
 def predict(image_dir: str ):
-    if inference_func is None:
-        return f'Model not loaded. Please check that the directory is correct.'
     
     image_shape = (224,224)
 
@@ -38,7 +38,6 @@ def predict(image_dir: str ):
     tensor = tf.convert_to_tensor(resized_image, dtype=dtypes.float32)
     tensor_batch = tf.expand_dims(tensor, axis=0)
     preprocessed_tensor = tf.keras.applications.mobilenet_v3.preprocess_input(tensor_batch)
-
 
     try:
         prediction = inference_func(preprocessed_tensor)
@@ -64,8 +63,12 @@ def predict(image_dir: str ):
     except Exception as e:
         return f"Error during inference: {e}"
 
-
-print(predict('cnn-arthritis/dataset-cleaned/test/0/capture_383.png')) # category 0
-print(predict('cnn-arthritis/dataset-cleaned/test/1/capture_070.png')) # category 1
-print(predict('cnn-arthritis/dataset-cleaned/test/3/capture_165.png')) # category 3
-
+if __name__ == '__main__':
+    
+    while True:
+        try:
+            image_directory = str(input('Enter the directory of the image you want to predict: '))
+            result = predict(image_directory)
+            print(result)
+        except Exception as e:
+            print(f'Error running inference on the model. Ensure the directories are correct {e}')
