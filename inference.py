@@ -8,12 +8,12 @@ import cv2
 
 
 DEFAULT_FUNCTION_KEY = 'serving_default'
-MODEL_PATH = 'my_model' 
+MODEL_PATH = 'tf-osteo' 
 
 
     
 try:
-    model = tf.saved_model.load(MODEL_PATH)
+    model: tf.saved_model = tf.saved_model.load(MODEL_PATH)
     inference_func = model.signatures[DEFAULT_FUNCTION_KEY]
     print(f"Model loaded successfully from {MODEL_PATH}")
 except Exception as e:
@@ -50,11 +50,13 @@ def predict(image_dir: str ):
         prediction_label_encoded = int(prediction_label)
 
         if prediction_label_encoded == 0:
-            message = 'The xray belongs to KL category 0. The image shows no (or doubtful) evidence of osteoarthritis.'
+            message = 'The thermal image belongs to KL category 0. The image shows no (or doubtful) evidence of osteoarthritis.'
         elif prediction_label_encoded == 1:
-            message = 'The xray belongs to KL category 1. The image shows doubtful evidence of osteoarthritis'
+            message = 'The thermal image belongs to KL category 1. The image shows doubtful evidence of osteoarthritis'        
         elif prediction_label_encoded == 2:
-            message = 'The xray belongs to KL category 3. The image shows definite signs of osteoarthritis.'
+            message = 'The thermal image belongs to KL category 2. The image shows some evidence of osteoarthritis'
+        elif prediction_label_encoded == 3:
+            message = 'The thermal image belongs to KL category 3. The image shows definite signs of osteoarthritis.'
         else:
             message = f'Unexpected prediction label: {prediction_label_encoded}'
 

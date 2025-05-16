@@ -1,7 +1,15 @@
 # ----- dirs -----
 dataset-cleaned/
+dataset/
+dataset-lmao/
+logs/
+notes/
+storage_folders/
 __pycache__
 
 # ----- files -----
 dataset-base.zip
 backup-best.zip
+tf-osteo.zip
+clean_dataset.tar
+train_test_split.py
