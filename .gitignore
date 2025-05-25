@@ -5,6 +5,7 @@ dataset-lmao/
 logs/
 notes/
 storage_folders/
+clean_dataset/
 __pycache__
 
 # ----- files -----
