@@ -14,7 +14,7 @@
 ## Model details
 
 - **Model Name:** tf-osteo
-- **Developer:** Neil Artus
+- **Developer:** Neil Artus (*model training and inference*), Joshua Lawrence C. Contreras (*user interface*)
 - **Researchers:**  Joshua Lawrence C. Contreras, Hadji Luis L. Montealegre, Francis G. Yaeso
 - **Model version:** 1.0
 - **Model type:** Convolutional Neural Network (CNN) for image classification based on the MobileNetV3 architecture with custom (BatchNormalization, Dropout,  Dense) layers.
